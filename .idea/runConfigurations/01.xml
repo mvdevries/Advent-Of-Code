@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="01" type="NodeJSConfigurationType" path-to-js-file="2020-01.js" working-dir="$PROJECT_DIR$/01">
+    <method v="2" />
+  </configuration>
+</component>
