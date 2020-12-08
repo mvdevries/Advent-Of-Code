@@ -2,7 +2,6 @@
   "name": "2019-01",
   "version": "1.0.0",
   "description": "Advent of code 2020",
-  "main": "",
   "scripts": {
     "test": "jest"
   },
