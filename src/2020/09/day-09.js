@@ -20,7 +20,6 @@ parts.part1 = async function() {
 
 parts.part2 = async function() {
   const lines = toEntryArray(await readInput());
-
 }
 
 (async () => {
