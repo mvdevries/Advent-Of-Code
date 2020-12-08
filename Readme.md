@@ -1,6 +1,5 @@
 # Advent of Code 2020
-
-Here you can find the projects of 2020 Advent of code of Martyn
+These are the days of Advent of Code 2020
 
 Links:
 - [Advent of Code 2020](https://adventofcode.com/2020)
