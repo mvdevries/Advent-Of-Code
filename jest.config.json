@@ -1,0 +1,6 @@
+{
+  "name": "Advent of code 2020",
+  "jest": {
+    "verbose": true
+  }
+}

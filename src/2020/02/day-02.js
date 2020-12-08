@@ -3,8 +3,10 @@ const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
 
+const parts = module.exports = {};
+
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
@@ -41,9 +43,9 @@ function isValidPassword(occurrences, min, max) {
   return occurrences >= min && occurrences <= max;
 }
 
-
-(async () => {
-  const validPasswords = toEntryArray(await readInput())
+parts.part1 = async function() {
+  const lines = toEntryArray(await readInput())
+  const validPasswords = lines
     .map(pl => {
       const [minMax, rawChar, password] = parsePasswordLine(pl);
       const {min, max} = parseMinMax(minMax)
@@ -54,5 +56,27 @@ function isValidPassword(occurrences, min, max) {
     .filter(v => v);
 
   console.log(validPasswords.length);
+  return validPasswords.length;
+}
 
-})();
+function hasChar(password, char, pos) {
+  return password.charAt(pos - 1) === char;
+}
+
+function parsePositions(positions) {
+  return positions.split('-');
+}
+
+parts.part2 = async function() {
+  const validPasswords = toEntryArray(await readInput())
+    .map(pl => {
+      const [positions, rawChar, password] = parsePasswordLine(pl);
+      const [pos1, pos2] = parsePositions(positions)
+      const char = parseChar(rawChar)
+      return hasChar(password, char, parseInt(pos1)) ^ hasChar(password, char, parseInt(pos2));
+    })
+    .filter(v => v);
+
+  console.log(validPasswords.length);
+  return validPasswords.length;
+}

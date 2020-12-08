@@ -3,15 +3,28 @@ const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
 
+const parts = module.exports = {};
+
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
   return input.split('\n').filter(n => n).map(n => parseInt(n));
 }
 
-function calculate(entries) {
+function calculate1(entries) {
+  const entrySet = new Set(entries)
+
+  for (const entry of entries) {
+    const remainder = 2020 - entry;
+    if (entrySet.has(remainder)) {
+      return entry * remainder;
+    }
+  }
+}
+
+function calculate2(entries) {
   const entrySet = new Set(entries)
 
   for (let i = 0; i < entries.length; i++) {
@@ -29,11 +42,18 @@ function calculate(entries) {
   }
 }
 
-(async () => {
-  const input = await readInput();
-  let entries = toEntryArray(input);
+parts.part1 = async function() {
+  const entries = toEntryArray(await readInput());
+  const answer = calculate1(entries);
+  console.log(answer);
+  return answer;
+}
+
+parts.part2 = async function() {
+  const entries = toEntryArray(await readInput());
   entries.sort();
 
-  const answer = calculate(entries);
+  const answer = calculate2(entries);
   console.log(answer);
-})();
+  return answer;
+}
