@@ -3,16 +3,47 @@ const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
 
+const parts = module.exports = {};
+
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
   return input.split('\n');
 }
 
-
 function reduceAnswers(lines) {
+  return lines.reduce((acc, line) => {
+    if (acc.length === 0 || line === '') {
+      acc.push(line);
+    } else {
+      acc[acc.length - 1] += line;
+    }
+
+    return acc;
+  }, []);
+}
+
+function countUniqueChars(line) {
+  const charsInLine = new Set([...line]);
+  console.log(charsInLine);
+  return charsInLine.size;
+}
+
+parts.part1 = async function() {
+  const lines = toEntryArray(await readInput());
+  const reducedAnswers = reduceAnswers(lines);
+  const countedUniqueLineItems = reducedAnswers.reduce((acc, line) => {
+    acc += countUniqueChars(line);
+    return acc;
+  }, 0);
+
+  console.log(countedUniqueLineItems);
+  return countedUniqueLineItems;
+}
+
+function reduceAnswers2(lines) {
   return lines.reduce((acc, line) => {
     if (acc.length === 0 || line === '') {
       acc.push({
@@ -31,7 +62,7 @@ function reduceAnswers(lines) {
   }, []);
 }
 
-function countUniqueChars(group) {
+function countUniqueChars2(group) {
   const charsInLine = new Map();
   for (const char of group.chars) {
     if (charsInLine.has(char)) {
@@ -46,18 +77,13 @@ function countUniqueChars(group) {
   return group.uniques;
 }
 
-(async () => {
+parts.part2 = async function() {
   const lines = toEntryArray(await readInput());
-
-  const reducedAnswers = reduceAnswers(lines);
-
+  const reducedAnswers = reduceAnswers2(lines);
   const countedUniqueLineItems = reducedAnswers.reduce((acc, group) => {
-    acc += countUniqueChars(group);
+    acc += countUniqueChars2(group);
     return acc;
   }, 0);
-  console.log(reducedAnswers);
-
-
   console.log(countedUniqueLineItems);
-
-})();
+  return countedUniqueLineItems;
+}

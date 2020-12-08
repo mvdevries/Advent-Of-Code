@@ -3,14 +3,15 @@ const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
 
+const parts = module.exports = {};
+
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
   return input.split('\n').filter(n => n);
 }
-
 
 function getRowOrColumn(line, start, end, lowerLetter, higherLetter) {
   for (const char of line) {
@@ -41,8 +42,7 @@ function checkBoardingPass(lines) {
   });
 }
 
-
-(async () => {
+parts.part1 = async function() {
   const lines = toEntryArray(await readInput());
 
   const seats = checkBoardingPass(lines)
@@ -54,7 +54,29 @@ function checkBoardingPass(lines) {
     }
   }
   console.log(seatId);
-})();
+  return seatId;
+}
+
+parts.part2 = async function() {
+  const lines = toEntryArray(await readInput());
+
+  const seats = checkBoardingPass(lines)
+
+  const sortedSeatIds = seats.map(s => s.getId()).sort((a, b) => a - b);
+  const possibleMissingSeatIds = [];
+
+  let previousId;
+  for (const seatId of sortedSeatIds) {
+    if (!!previousId && seatId - 1 !== previousId) {
+      possibleMissingSeatIds.push(seatId - 1);
+    }
+
+    previousId = seatId;
+  }
+
+  console.log(possibleMissingSeatIds[0]);
+  return possibleMissingSeatIds[0];
+}
 
 class Seat {
   constructor(row, column) {

@@ -2,10 +2,12 @@
 const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
-const Computer = require('../08/computer');
+const Computer = require('./computer');
+
+const parts = module.exports = {};
 
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
@@ -30,7 +32,17 @@ function getAlteredProgram(program, i) {
   return programCopy;
 }
 
-(async () => {
+parts.part1 = async function() {
+  const lines = toEntryArray(await readInput());
+
+  const computer = new Computer();
+  computer.load(lines);
+  const hasLoop = computer.executeCatchOnloop();
+  console.log(hasLoop, computer.accumulator);
+  return computer.accumulator;
+}
+
+parts.part2 = async function() {
   const program = toEntryArray(await readInput());
   const computer = new Computer();
 
@@ -44,5 +56,6 @@ function getAlteredProgram(program, i) {
     }
   }
 
-  console.log(computer)
-})();
+  console.log(computer.accumulator);
+  return computer.accumulator;
+}

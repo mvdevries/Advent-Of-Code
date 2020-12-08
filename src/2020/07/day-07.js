@@ -3,8 +3,10 @@ const {readFile} = require('fs');
 const {promisify} = require('util');
 const readFileAsync = promisify(readFile);
 
+const parts = module.exports = {};
+
 function readInput() {
-  return readFileAsync('input.txt', 'utf8');
+  return readFileAsync(__dirname + '/input.txt', 'utf8');
 }
 
 function toEntryArray(input) {
@@ -24,7 +26,7 @@ function parseInnerBags(words) {
     }
 
     if (acc[acc.length - 1].length === 4) {
-      const amount = acc[acc.length - 1].shift();
+      const amount = parseInt(acc[acc.length - 1].shift());
       acc[acc.length - 1] = parseRule(acc[acc.length - 1].join(' '), amount);
     }
 
@@ -63,11 +65,9 @@ function findCanHold(bags, searchForBags) {
   return bagsCanHold;
 }
 
-(async () => {
+parts.part1 = async function () {
   const lines = toEntryArray(await readInput());
-
   const bags = lines.map((rule) => parseRule(rule));
-
   const possibleBags = findCanHold(bags, 'shiny_gold');
   const uniquePossibleBags = new Map(possibleBags.map(pb => {
     return [
@@ -76,7 +76,26 @@ function findCanHold(bags, searchForBags) {
     ];
   }));
   console.log(uniquePossibleBags.size);
-})();
+  return uniquePossibleBags.size;
+}
+
+function countInnerBags(bags, forId) {
+  return bags
+    .find(bag => bag.id === forId)
+    .childs
+    .reduce((acc, cb) => {
+      return acc + cb._amount + (cb._amount * countInnerBags(bags, cb.id));
+    }, 0);
+}
+
+parts.part2 = async function() {
+  const lines = toEntryArray(await readInput());
+  const bags = lines.map((rule) => parseRule(rule));
+
+  const innerBagsCount = countInnerBags(bags, 'shiny_gold');
+  console.log(innerBagsCount);
+  return innerBagsCount;
+}
 
 class BagType {
   constructor(type, color, amount) {
@@ -98,5 +117,9 @@ class BagType {
 
   addInnerBag(bag) {
     this._innerBags.set(bag.id, bag);
+  }
+
+  get childs() {
+    return [...this._innerBags.values()];
   }
 }
