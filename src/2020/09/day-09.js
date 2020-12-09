@@ -13,7 +13,7 @@ function toEntryArray(input) {
   return input.split('\n').filter(n => n).map(n => parseInt(n));
 }
 
-function calculate(preamble, checkNumber) {
+function preambleHasNumber(preamble, checkNumber) {
   const entrySet = new Set()
 
   for (const entry of preamble) {
@@ -28,13 +28,17 @@ function calculate(preamble, checkNumber) {
   return false;
 }
 
+function getPreamble(numbers, to, size) {
+  return numbers.slice(to - size, to)
+}
+
 function findInvalidNumber(numbers, preambleSize = 25) {
   for (let i = preambleSize; i < numbers.length; i++) {
-    const num = numbers[i];
-    const preamble = numbers.slice(i - preambleSize, i);
-    if (!calculate(preamble, num)) {
+    const number = numbers[i];
+    const preamble = getPreamble(numbers, i, preambleSize);
+    if (!preambleHasNumber(preamble, number)) {
       return {
-        invalidNumber: num,
+        invalidNumber: number,
         index: i,
       };
     }
@@ -72,7 +76,6 @@ function max(numbers) {
 parts.part1 = async function() {
   const numbers = toEntryArray(await readInput());
   const {invalidNumber} = findInvalidNumber(numbers);
-  console.log(invalidNumber);
   return invalidNumber;
 }
 
@@ -81,8 +84,5 @@ parts.part2 = async function() {
   const {index, invalidNumber} = findInvalidNumber(numbers);
   const previousNumbers = numbers.slice(0, index).filter(n => n < invalidNumber);
   const combo = findSumCombo(previousNumbers, invalidNumber);
-  const minMax = max(combo) + min(combo);
-  console.log(minMax);
-
-  return minMax;
+  return max(combo) + min(combo);
 }
