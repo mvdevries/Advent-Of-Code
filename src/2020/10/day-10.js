@@ -14,7 +14,7 @@ function toEntryArray(input) {
 }
 
 parts.part1 = async function() {
-
+  return true;
 };
 
 parts.part2 = async function() {

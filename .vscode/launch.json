@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Day-10",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/src/2020/10/day-10.js"
+    }
+  ]
+}
