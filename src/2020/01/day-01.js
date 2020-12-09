@@ -14,13 +14,14 @@ function toEntryArray(input) {
 }
 
 function calculate1(entries) {
-  const entrySet = new Set(entries)
+  const entrySet = new Set()
 
   for (const entry of entries) {
     const remainder = 2020 - entry;
     if (entrySet.has(remainder)) {
       return entry * remainder;
     }
+    entrySet.add(entry);
   }
 }
 
