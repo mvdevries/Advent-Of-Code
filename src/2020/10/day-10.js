@@ -18,7 +18,7 @@ parts.part1 = async function() {
 };
 
 parts.part2 = async function() {
-
+  return true;
 };
 
 (async () => {

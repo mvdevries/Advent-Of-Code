@@ -38,7 +38,7 @@ parts.part1 = async function() {
   const computer = new Computer();
   computer.load(lines);
   const hasLoop = computer.executeCatchOnloop();
-  console.log(hasLoop, computer.accumulator);
+
   return computer.accumulator;
 }
 
@@ -56,6 +56,5 @@ parts.part2 = async function() {
     }
   }
 
-  console.log(computer.accumulator);
   return computer.accumulator;
 }

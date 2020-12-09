@@ -62,9 +62,7 @@ parts.part1 = async function() {
   const lines = toEntryArray(await readInput());
   const passports = getPassports(lines);
 
-  const validPassports = passports.filter(p => p.hasRequiredFields).length;
-  console.log(validPassports);
-  return validPassports;
+  return passports.filter(p => p.hasRequiredFields).length;
 }
 
 function parseLine(line) {
@@ -80,7 +78,6 @@ function parseLine(line) {
     return acc && passport.keys.includes(key) && checkValueForKey(key, passport[key]);
   }, true);
 
-  console.log(passport);
   return passport;
 }
 
@@ -126,7 +123,5 @@ parts.part2 = async function() {
     return acc;
   }, []);
 
-  const validPassports = passports.filter(p => p.valid).length;
-  console.log(validPassports);
-  return validPassports;
+  return passports.filter(p => p.valid).length;
 }

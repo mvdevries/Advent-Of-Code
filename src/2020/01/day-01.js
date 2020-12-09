@@ -45,16 +45,12 @@ function calculate2(entries) {
 
 parts.part1 = async function() {
   const entries = toEntryArray(await readInput());
-  const answer = calculate1(entries);
-  console.log(answer);
-  return answer;
+  return calculate1(entries);
 }
 
 parts.part2 = async function() {
   const entries = toEntryArray(await readInput());
   entries.sort();
 
-  const answer = calculate2(entries);
-  console.log(answer);
-  return answer;
+  return calculate2(entries);
 }

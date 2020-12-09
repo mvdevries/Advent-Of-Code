@@ -27,7 +27,6 @@ function reduceAnswers(lines) {
 
 function countUniqueChars(line) {
   const charsInLine = new Set([...line]);
-  console.log(charsInLine);
   return charsInLine.size;
 }
 
@@ -39,7 +38,6 @@ parts.part1 = async function() {
     return acc;
   }, 0);
 
-  console.log(countedUniqueLineItems);
   return countedUniqueLineItems;
 }
 
@@ -84,6 +82,6 @@ parts.part2 = async function() {
     acc += countUniqueChars2(group);
     return acc;
   }, 0);
-  console.log(countedUniqueLineItems);
+
   return countedUniqueLineItems;
 }

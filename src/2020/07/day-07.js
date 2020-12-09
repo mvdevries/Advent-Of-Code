@@ -75,7 +75,7 @@ parts.part1 = async function () {
       pb,
     ];
   }));
-  console.log(uniquePossibleBags.size);
+
   return uniquePossibleBags.size;
 }
 
@@ -92,9 +92,7 @@ parts.part2 = async function() {
   const lines = toEntryArray(await readInput());
   const bags = lines.map((rule) => parseRule(rule));
 
-  const innerBagsCount = countInnerBags(bags, 'shiny_gold');
-  console.log(innerBagsCount);
-  return innerBagsCount;
+  return countInnerBags(bags, 'shiny_gold');
 }
 
 class BagType {

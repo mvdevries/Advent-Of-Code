@@ -28,7 +28,6 @@ parts.part1 = async function() {
     rightPos %= 31;
   }
 
-  console.log(trees);
   return trees;
 }
 
@@ -58,6 +57,5 @@ parts.part2 = async function() {
   count *= countTreesOnSlope(lines, 7, 1);
   count *= countTreesOnSlope(lines, 1, 2);
 
-  console.log(count)
   return count;
 }

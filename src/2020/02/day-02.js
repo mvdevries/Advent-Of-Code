@@ -55,7 +55,6 @@ parts.part1 = async function() {
     })
     .filter(v => v);
 
-  console.log(validPasswords.length);
   return validPasswords.length;
 }
 
@@ -77,6 +76,5 @@ parts.part2 = async function() {
     })
     .filter(v => v);
 
-  console.log(validPasswords.length);
   return validPasswords.length;
 }

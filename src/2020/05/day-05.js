@@ -53,7 +53,7 @@ parts.part1 = async function() {
       seatId = seat.getId();
     }
   }
-  console.log(seatId);
+
   return seatId;
 }
 
@@ -74,7 +74,6 @@ parts.part2 = async function() {
     previousId = seatId;
   }
 
-  console.log(possibleMissingSeatIds[0]);
   return possibleMissingSeatIds[0];
 }
 
