@@ -111,10 +111,12 @@ parts.part1 = async function() {
 
 parts.part2 = async function() {
   let newFloor = toEntryArray(await readInput());
+  printFloor(newFloor);
   let oldFloor = [];
   while (!floorsAreEqual(oldFloor, newFloor)) {
     oldFloor = newFloor;
     newFloor = round(oldFloor, checkInSightAdjacent, 5);
+    printFloor(newFloor);
   }
 
   return countSeats(newFloor, '#');
@@ -122,7 +124,7 @@ parts.part2 = async function() {
 
 (async () => {
   try {
-    await parts.part1();
+    await parts.part2();
   } catch(err) {
     console.log(err);
   }
