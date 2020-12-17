@@ -30,19 +30,19 @@ const deltas = [
   {x: -1, y: -1},
 ];
 
-function searchInDirection(floor, x, y, dx, dy) {
+function searchInDirection(floor, x, y, dx, dy, seatType) {
   do {
     y += dy;
     x += dx;
   }
-  while (!!floor[y] && !!floor[y][x] && floor[y][x] !== seatTypes.empty);
+  while (!!floor[y] && !!floor[y][x] && floor[y][x] === seatTypes.no);
 
-  return !!floor[y] && !!floor[y][x];
+  return !!floor[y] && !!floor[y][x] && floor[y][x] === seatType;
 }
 
 function checkInSightAdjacent(floor, x, y, seatType) {
   return deltas.reduce((seats, delta) => {
-    if (searchInDirection(floor, x, y, delta.x, delta.y)) {
+    if (searchInDirection(floor, x, y, delta.x, delta.y, seatType)) {
       seats +=1;
     }
     return seats;
@@ -73,15 +73,6 @@ function round(oldFloor, checkAdjacentFunction, allowence) {
   });
 }
 
-function printFloor(floor) {
-  const floorCopy = JSON.parse(JSON.stringify(floor))
-
-  console.log('');
-  for (let y = 0; y < floor.length; y++) {
-    console.log(floor[y].join(''));
-  }
-}
-
 function floorsAreEqual(floor1, floor2) {
   if (floor1.length !== floor2.length) {
     return false;
@@ -98,9 +89,8 @@ function countSeats(floor, seatType) {
 }
 
 parts.part1 = async function() {
-  let newFloor = toEntryArray(await readInput());
-
   let oldFloor = [];
+  let newFloor = toEntryArray(await readInput());
   while (!floorsAreEqual(oldFloor, newFloor)) {
     oldFloor = newFloor;
     newFloor = round(oldFloor, checkDirectAdjacent, 4);
@@ -110,22 +100,12 @@ parts.part1 = async function() {
 };
 
 parts.part2 = async function() {
-  let newFloor = toEntryArray(await readInput());
-  printFloor(newFloor);
   let oldFloor = [];
+  let newFloor = toEntryArray(await readInput());
   while (!floorsAreEqual(oldFloor, newFloor)) {
     oldFloor = newFloor;
     newFloor = round(oldFloor, checkInSightAdjacent, 5);
-    printFloor(newFloor);
   }
 
   return countSeats(newFloor, '#');
 };
-
-(async () => {
-  try {
-    await parts.part2();
-  } catch(err) {
-    console.log(err);
-  }
-})();
