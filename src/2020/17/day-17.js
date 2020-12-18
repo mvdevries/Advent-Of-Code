@@ -88,7 +88,9 @@ function round(activeCubeSet, d, hasAxisW = false) {
 }
 
 parts.part1 = async function() {
-  const startArray = toCubeArray(await readInput());
+  console.time('part 1');
+  const input = await readInput();
+  const startArray = toCubeArray(input);
   let activeCubeSet = createActiveCubeSetFromStartArray(startArray);
   const dimensions = createDimensionsFromStartArray(startArray);
 
@@ -96,11 +98,14 @@ parts.part1 = async function() {
     activeCubeSet = round(activeCubeSet, dimensions);
   }
 
+  console.timeEnd('part 1');
   return activeCubeSet.size;
 };
 
 parts.part2 = async function() {
-  const startArray = toCubeArray(await readInput());
+  console.time('part 2');
+  const input = await readInput();
+  const startArray = toCubeArray(input);
   let activeCubeSet = createActiveCubeSetFromStartArray(startArray);
   const dimensions = createDimensionsFromStartArray(startArray);
 
@@ -108,5 +113,13 @@ parts.part2 = async function() {
     activeCubeSet = round(activeCubeSet, dimensions, true);
   }
 
+  console.timeEnd('part 2');
   return activeCubeSet.size;
 };
+
+(async () => {
+  console.time('parts');
+  await parts.part1();
+  await parts.part2();
+  console.timeEnd('parts');
+})();

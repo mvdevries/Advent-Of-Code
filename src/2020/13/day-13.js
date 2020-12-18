@@ -18,12 +18,15 @@ function toBusLines(busLines) {
 }
 
 function toBusLinesWithIndex(busLines) {
-  return busLines.split(',').map((n, index) => {
-    return {
-      busLine: parseInt(n, 10),
-      index,
-    };
-  }).filter(({busLine}) => !Number.isNaN(busLine));
+  return busLines
+    .split(',')
+    .map((n, index) => {
+      return {
+        busLine: parseInt(n, 10),
+        index,
+      };
+    })
+    .filter(({busLine}) => !Number.isNaN(busLine));
 }
 
 parts.part1 = async function() {

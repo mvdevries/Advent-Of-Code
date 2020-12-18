@@ -46,12 +46,3 @@ parts.part2 = async function() {
   const countMap = getAllowedArrangementCount(jolts);
   return [...countMap.values()].pop();
 };
-
-(async () => {
-  try {
-    const answer = await parts.part2();
-    console.log(answer);
-  } catch (err) {
-    console.log(err);
-  }
-})();
