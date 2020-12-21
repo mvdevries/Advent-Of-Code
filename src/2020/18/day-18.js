@@ -16,7 +16,7 @@ function parseInput(input) {
 const operations = {
   "+": (a, b) => a + b,
   "*": (a, b) => a * b,
-}
+};
 
 function evaluate(expression, precedence) {
   const operators = [];
@@ -59,7 +59,7 @@ function evaluate(expression, precedence) {
       calculate();
     }
 
-    operators.push(char)
+    operators.push(char);
   }
 
   while(operators.length > 0) {
@@ -86,8 +86,3 @@ parts.part2 = async function() {
     .map(expression => evaluate(expression, precedence))
     .reduce((a, b) => a + b);
 };
-
-(async () => {
-  await parts.part1();
-  await parts.part2();
-})();
