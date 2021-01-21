@@ -15,7 +15,6 @@ function parseInput(input) {
   return input.split('\n\n').map(rawTile => new Tile(rawTile));
 }
 
-
 function getCornerCandidates(tiles) {
   const cornerCandidates = [];
   for (const tile of tiles) {

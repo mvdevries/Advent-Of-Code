@@ -60,7 +60,10 @@ function recursiveCombatGame(player1, player2, gameDepth = 0) {
   while (!gameIsFinished(player1, player2)) {
     const gameSummary = getSummary(player1, player2);
     if (previousGames.has(gameSummary)) {
-      return {player: 1, cards: player1};
+      return {
+        player: 1,
+        cards: player1,
+      };
     }
     previousGames.add(gameSummary);
 
