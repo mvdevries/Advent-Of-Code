@@ -1,43 +1,52 @@
 using System.Diagnostics;
-using NUnit.Framework;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Solutions.Days;
 
 namespace Solutions.Tests.Days;
 
-public class Day01Tests
+[TestClass]
+public class UnitTest1
 {
     private readonly Day01 _day01 = new();
+    private string _input;
 
-    [SetUp]
-    public void Setup()
+    [TestInitialize]
+    public async Task Initialize()
     {
+        _input = await File.ReadAllTextAsync("./Inputs/Day01.txt");
     }
 
-    [Test]
+    [TestMethod]
     public void HandTestPart1()
     {
-        var answer = _day01.Part1();
+        var input = "";
+        var answer = _day01.Part1(input);
         Debug.WriteLine(answer);
     }
 
-    [Test]
+    [TestMethod]
     public void Part1()
     {
-        var answer = _day01.Part1();
-        Assert.Equals(answer, "");
+        var answer = _day01.Part1(_input);
+        Debug.WriteLine(answer);
+        Assert.AreEqual(answer, "");
     }
 
-    [Test]
+    [TestMethod]
     public void HandTestPart2()
     {
-        var answer = _day01.Part2();
+        var input = "";
+        var answer = _day01.Part2(input);
         Debug.WriteLine(answer);
     }
 
-    [Test]
+    [TestMethod]
     public void Part2()
     {
-        var answer = _day01.Part2();
-        Assert.Equals(answer, "");
+        var answer = _day01.Part2(_input);
+        Debug.WriteLine(answer);
+        Assert.AreEqual(answer, "");
     }
 }

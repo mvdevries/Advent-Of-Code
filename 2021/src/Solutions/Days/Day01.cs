@@ -4,12 +4,12 @@ namespace Solutions.Days;
 
 public class Day01: IDay
 {
-    public string Part1()
+    public string Part1(string input)
     {
-        return "";
+        return input;
     }
 
-    public string Part2()
+    public string Part2(string input)
     {
         return "";
     }
