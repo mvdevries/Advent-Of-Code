@@ -1,6 +1,10 @@
-# Advent of Code 2020
-These are the days of Advent of Code 2020
+[![Go Report Card](https://goreportcard.com/badge/github.com/orfeasa/advent-of-code-2021)](https://goreportcard.com/report/github.com/orfeasa/advent-of-code-2021)
 
-Links:
-- [Advent of Code 2020](https://adventofcode.com/2020)
-- [Advent of Code 2020 Events](https://adventofcode.com/2020/events)
+# 🎄 Advent of Code 2021 🎄
+![AoC2021 logo](https://user-images.githubusercontent.com/1821972/143898272-ea15addd-e9cd-468c-bb2e-d79e6b142226.png)
+
+## Summary
+
+[Advent of Code](http://adventofcode.com/) is an annual Advent calendar of programming puzzles.
+
+This year I am doing it in C#.
