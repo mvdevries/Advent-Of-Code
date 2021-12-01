@@ -10,7 +10,7 @@ namespace Solutions.Tests.Days;
 public class UnitTest1
 {
     private readonly Day01 _day01 = new();
-    private string _input;
+    private string? _input;
 
     [TestInitialize]
     public async Task Initialize()
@@ -38,7 +38,7 @@ public class UnitTest1
     [TestMethod]
     public void Part1()
     {
-        var answer = _day01.Part1(_input);
+        var answer = _day01.Part1(_input!);
         Debug.WriteLine(answer);
         Assert.AreEqual(answer, 1709);
     }
@@ -65,7 +65,7 @@ public class UnitTest1
     [TestMethod]
     public void Part2()
     {
-        var answer = _day01.Part2(_input);
+        var answer = _day01.Part2(_input!);
         Debug.WriteLine(answer);
         Assert.AreEqual(answer, 1761);
     }
