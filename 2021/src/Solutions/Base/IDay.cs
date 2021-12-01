@@ -2,7 +2,7 @@ namespace Solutions.Base;
 
 interface IDay
 {
-    string Part1(string input);
+    int Part1(string input);
 
-    string Part2(string input);
+    int Part2(string input);
 }

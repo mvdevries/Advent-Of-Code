@@ -21,7 +21,16 @@ public class UnitTest1
     [TestMethod]
     public void HandTestPart1()
     {
-        var input = "";
+        var input = @"199
+200
+208
+210
+200
+207
+240
+269
+260
+263";
         var answer = _day01.Part1(input);
         Debug.WriteLine(answer);
     }
@@ -31,13 +40,24 @@ public class UnitTest1
     {
         var answer = _day01.Part1(_input);
         Debug.WriteLine(answer);
-        Assert.AreEqual(answer, "");
+        Assert.AreEqual(answer, 1709);
     }
 
     [TestMethod]
     public void HandTestPart2()
     {
-        var input = "";
+        var input = @"
+    199
+    200
+    208
+    210
+    200
+    207
+    240
+    269
+    260
+    263
+";
         var answer = _day01.Part2(input);
         Debug.WriteLine(answer);
     }
@@ -47,6 +67,6 @@ public class UnitTest1
     {
         var answer = _day01.Part2(_input);
         Debug.WriteLine(answer);
-        Assert.AreEqual(answer, "");
+        Assert.AreEqual(answer, 1761);
     }
 }
