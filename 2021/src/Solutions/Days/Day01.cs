@@ -2,54 +2,60 @@ using Solutions.Base;
 
 namespace Solutions.Days;
 
-public class Day01: IDay
+public static class PairUpExtensions {
+    public static IEnumerable<T[]> PairUp<T>(this IEnumerable<T> enumerable, int size)
+    {
+        return PairUpItems(enumerable, size);
+    }
+
+    private static IEnumerable<T[]> PairUpItems<T>(IEnumerable<T> enumerable, int size)
+    {
+        var queue = new Queue<T>(size);
+        foreach (var item in enumerable)
+        {
+            if (queue.Count == size)
+            {
+                queue.Dequeue();
+            }
+
+            queue.Enqueue(item);
+            if (queue.Count == size)
+            {
+                yield return queue.ToArray();
+            }
+        }
+    }
+}
+
+public static class InputPrepareExtensions
 {
-    private IEnumerable<int> seperateInput(string input)
+    public static IEnumerable<int> ToNumberList(this string input)
+    {
+        return StringToNumberList(input);
+    }
+
+    private static IEnumerable<int> StringToNumberList(string input)
     {
         return input.Trim().Split('\n').Select(e => int.Parse(e.Trim()));
     }
+}
 
+public class Day01: IDay
+{
     public int Part1(string input)
     {
-        var numbers = seperateInput(input);
-
-        int? previousN = null;
-        int count = 0;
-        foreach (var n in numbers)
-        {
-            if (n > previousN)
-                count++;
-            previousN = n;
-        }
-
-        return count;
+        return input
+            .ToNumberList()
+            .PairUp(2)
+            .Aggregate(0, (acc, pair) => pair[1] > pair[0] ? acc + 1 : acc);
     }
 
     public int Part2(string input)
     {
-        int previous1 = 0;
-        int previous2 = 0;
-        var numbers = seperateInput(input);
-        var groups = numbers
-            .Select((n, i) => new {n, i})
-            .Aggregate(new List<int>(), (acc, e) =>
-            {
-                if (previous1 != 0 && previous2 != 0)
-                    acc.Add(e.n + previous1 + previous2);
-                previous2 = previous1;
-                previous1 = e.n;
-                return acc;
-            });
-
-        int? previousN = null;
-        int count = 0;
-        foreach (var n in groups)
-        {
-            if (n > previousN)
-                count++;
-            previousN = n;
-        }
-
-        return count;
+        return input.ToNumberList()
+            .PairUp(3)
+            .Select(pair => pair.Sum())
+            .PairUp(2)
+            .Aggregate(0, (acc, pair) => pair[1] > pair[0] ? acc + 1 : acc);
     }
 }
