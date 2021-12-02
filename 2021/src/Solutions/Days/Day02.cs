@@ -5,57 +5,79 @@ namespace Solutions.Days;
 
 public class Day02: IDay
 {
+    class Command
+    {
+        public Direction Direction { get; set; }
+        public int Value { get; set; }
+    }
+
+    enum Direction
+    {
+        Forward,
+        Down,
+        Up
+    }
+
     public int Part1(string input)
     {
-        var horizonal = 0;
-        var depth = 0;
-        var parts = input.ToPartsList();
-        foreach (var part in parts)
-        {
-            if (part.Item1 == "forward")
+        var (horizontal, depth) = input
+            .ToPartsList()
+            .Select(p => new Command()
             {
-                horizonal += part.Item2;
-            }
-
-            if (part.Item1 == "down")
+                Direction = p[0].ToEnum<Direction>(true),
+                Value = int.Parse(p[1])
+            })
+            .Aggregate((horizontal: 0, depth: 0), (acc, c) =>
             {
-                depth += part.Item2;
-            }
+                if (c.Direction == Direction.Forward)
+                {
+                    acc.horizontal += c.Value;
+                }
 
-            if (part.Item1 == "up")
-            {
-                depth -= part.Item2;
-            }
-        }
+                if (c.Direction == Direction.Down)
+                {
+                    acc.depth += c.Value;
+                }
 
-        return horizonal * depth;
+                if (c.Direction == Direction.Up)
+                {
+                    acc.depth -= c.Value;
+                }
+
+                return acc;
+            });
+        return horizontal * depth;
     }
 
     public int Part2(string input)
     {
-        var horizonal = 0;
-        var depth = 0;
-        var aim = 0;
-        var parts = input.ToPartsList();
-        foreach (var part in parts)
-        {
-            if (part.Item1 == "forward")
+        var (horizontal, depth, _) = input
+            .ToPartsList()
+            .Select(p => new Command()
             {
-                horizonal += part.Item2;
-                depth += (aim * part.Item2);
-            }
-
-            if (part.Item1 == "down")
+                Direction = p[0].ToEnum<Direction>(true),
+                Value = int.Parse(p[1])
+            })
+            .Aggregate((horizontal: 0, depth: 0, aim: 0), (acc, c) =>
             {
-                aim += part.Item2;
-            }
+                if (c.Direction == Direction.Forward)
+                {
+                    acc.horizontal += c.Value;
+                    acc.depth += (acc.aim * c.Value);
+                }
 
-            if (part.Item1 == "up")
-            {
-                aim -= part.Item2;
-            }
-        }
+                if (c.Direction == Direction.Down)
+                {
+                    acc.aim += c.Value;
+                }
 
-        return horizonal * depth;
+                if (c.Direction == Direction.Up)
+                {
+                    acc.aim -= c.Value;
+                }
+
+                return acc;
+            });
+        return horizontal * depth;
     }
 }
