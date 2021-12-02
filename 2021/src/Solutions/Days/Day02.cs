@@ -5,13 +5,9 @@ namespace Solutions.Days;
 
 public class Day02: IDay
 {
-    class Command
-    {
-        public Direction Direction { get; set; }
-        public int Value { get; set; }
-    }
+    private record Command (Direction Direction, int Value);
 
-    enum Direction
+    private enum Direction
     {
         Forward,
         Down,
@@ -22,11 +18,7 @@ public class Day02: IDay
     {
         var (horizontal, depth) = input
             .ToPartsList()
-            .Select(p => new Command()
-            {
-                Direction = p[0].ToEnum<Direction>(true),
-                Value = int.Parse(p[1])
-            })
+            .Select(p => new Command(p[0].ToEnum<Direction>(true), int.Parse(p[1])))
             .Aggregate((horizontal: 0, depth: 0), (acc, c) =>
             {
                 if (c.Direction == Direction.Forward)
@@ -53,11 +45,7 @@ public class Day02: IDay
     {
         var (horizontal, depth, _) = input
             .ToPartsList()
-            .Select(p => new Command()
-            {
-                Direction = p[0].ToEnum<Direction>(true),
-                Value = int.Parse(p[1])
-            })
+            .Select(p => new Command(p[0].ToEnum<Direction>(true), int.Parse(p[1])))
             .Aggregate((horizontal: 0, depth: 0, aim: 0), (acc, c) =>
             {
                 if (c.Direction == Direction.Forward)
