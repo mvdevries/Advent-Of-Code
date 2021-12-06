@@ -10,6 +10,19 @@ public class UnitTest3: IAsyncLifetime
 {
     private readonly Day03 _day03 = new();
     private string? _input;
+    private const string _handInput = @"
+00100
+11110
+10110
+10111
+10101
+01111
+00111
+11100
+10000
+11001
+00010
+01010";
 
     public async Task InitializeAsync()
     {
@@ -24,8 +37,7 @@ public class UnitTest3: IAsyncLifetime
     [Fact]
     public void HandTestPart1()
     {
-        const string input = @"";
-        var answer = _day03.Part1(input);
+        var answer = _day03.Part1(_handInput);
         Debug.WriteLine(answer);
     }
 
@@ -34,14 +46,13 @@ public class UnitTest3: IAsyncLifetime
     {
         var answer = _day03.Part1(_input!);
         Debug.WriteLine(answer);
-        Assert.Equal(2102357, answer);
+        Assert.Equal(3009600, answer);
     }
 
     [Fact]
     public void HandTestPart2()
     {
-        const string input = @"";
-        var answer = _day03.Part2(input);
+        var answer = _day03.Part2(_handInput);
         Debug.WriteLine(answer);
     }
 
@@ -50,6 +61,6 @@ public class UnitTest3: IAsyncLifetime
     {
         var answer = _day03.Part2(_input!);
         Debug.WriteLine(answer);
-        Assert.Equal(2101031224, answer);
+        Assert.Equal(6940518, answer);
     }
 }

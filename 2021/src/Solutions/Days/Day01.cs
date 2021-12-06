@@ -3,7 +3,7 @@ using Solutions.Extensions;
 
 namespace Solutions.Days;
 
-public class Day01: IDay
+public class Day01: IDay<int>
 {
     public int Part1(string input)
     {

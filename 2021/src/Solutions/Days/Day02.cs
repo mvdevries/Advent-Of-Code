@@ -3,7 +3,7 @@ using Solutions.Extensions;
 
 namespace Solutions.Days;
 
-public class Day02: IDay
+public class Day02: IDay<int>
 {
     private record Command (Direction Direction, int Value);
 

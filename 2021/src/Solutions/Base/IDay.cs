@@ -1,8 +1,8 @@
 namespace Solutions.Base;
 
-interface IDay
+interface IDay<Out> where Out: IComparable
 {
-    int Part1(string input);
+    Out Part1(string input);
 
-    int Part2(string input);
+    Out Part2(string input);
 }
