@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Solutions.XTests.Days;
 
-public class UnitTest3: IAsyncLifetime
+public class UnitTest03: IAsyncLifetime
 {
     private readonly Day03 _day03 = new();
     private string? _input;

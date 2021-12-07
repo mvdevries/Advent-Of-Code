@@ -6,14 +6,14 @@ using Xunit.Abstractions;
 
 namespace Solutions.XTests.Days;
 
-public class UnitTest5: IAsyncLifetime
+public class UnitTest05: IAsyncLifetime
 {
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly Day05 _day05 = new();
 
     private string? _input;
 
-    public UnitTest5(ITestOutputHelper testOutputHelper)
+    public UnitTest05(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
     }

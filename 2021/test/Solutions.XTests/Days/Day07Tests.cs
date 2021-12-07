@@ -6,19 +6,19 @@ using Xunit.Abstractions;
 
 namespace Solutions.XTests.Days;
 
-public class UnitTest7: IAsyncLifetime
+public class UnitTest07: IAsyncLifetime
 {
     private readonly ITestOutputHelper _testOutputHelper;
     private readonly Day07 _day07 = new();
 
     private string? _input;
 
-    public UnitTest7(ITestOutputHelper testOutputHelper)
+    public UnitTest07(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
     }
 
-    private const string _handInput = @"";
+    private const string _handInput = @"16,1,2,0,4,2,7,1,2,14";
 
     public async Task InitializeAsync()
     {
@@ -42,7 +42,7 @@ public class UnitTest7: IAsyncLifetime
     {
         var answer = _day07.Part1(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(356922, answer);
     }
 
     [Fact]
@@ -57,6 +57,6 @@ public class UnitTest7: IAsyncLifetime
     {
         var answer = _day07.Part2(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(100347031, answer);
     }
 }
