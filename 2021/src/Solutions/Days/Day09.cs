@@ -13,7 +13,7 @@ public class Day09: IDay<int>
         (1, 0),
     };
 
-    private Dictionary<(int X, int Y), int> ParseInput(string input)
+    public Dictionary<(int X, int Y), int> ParseInput(string input)
     {
         return input
             .ToStringList()
@@ -28,7 +28,7 @@ public class Day09: IDay<int>
         {
             var neighbours = _offsets
                 .Select(o => (X: o.X + coord.X, Y: o.Y + coord.Y))
-                .Where(x => heights.ContainsKey(x))
+                .Where(heights.ContainsKey)
                 .ToList();
 
             if (neighbours.All(x => heights[coord] < heights[x]))

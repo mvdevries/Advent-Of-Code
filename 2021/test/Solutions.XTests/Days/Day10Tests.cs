@@ -18,7 +18,18 @@ public class UnitTest10: IAsyncLifetime
         _testOutputHelper = testOutputHelper;
     }
 
-    private const string _handInput = @"";
+    private const string _handInput = @"
+[({(<(())[]>[[{[]{<()<>>
+[(()[<>])]({[<{<<[]>>(
+{([(<{}[<>[]}>{[]{[(<()>
+(((({<>}<{<{<>}{[]{[]{}
+[[<[([]))<([[{}[[()]]]
+[{[{({}]{}}([{[{{{}}([]
+{<[[]]>}<{[{[{[]{()[[[]
+[<(<(<(<{}))><([]([]()
+<{([([[(<>()){}]>(<<{{
+<{([{{}}[<[[[<>{}]]]>[]]
+";
 
     public async Task InitializeAsync()
     {
@@ -42,7 +53,7 @@ public class UnitTest10: IAsyncLifetime
     {
         var answer = _day10.Part1(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(319233, answer);
     }
 
     [Fact]
@@ -57,6 +68,6 @@ public class UnitTest10: IAsyncLifetime
     {
         var answer = _day10.Part2(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(1118976874, answer);
     }
 }
