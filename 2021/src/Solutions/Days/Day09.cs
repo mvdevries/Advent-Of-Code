@@ -13,7 +13,7 @@ public class Day09: IDay<int>
         (1, 0),
     };
 
-    public Dictionary<(int X, int Y), int> ParseInput(string input)
+    private Dictionary<(int X, int Y), int> ParseInput(string input)
     {
         return input
             .ToStringList()
