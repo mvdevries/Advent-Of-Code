@@ -1,4 +1,3 @@
-using System.Text;
 using Solutions.Base;
 using Solutions.Extensions;
 
@@ -26,12 +25,12 @@ public class Day11: IDay<int>
             .ToDictionary(c => (c.x, c.y), c => int.Parse(c.height.ToString()));
     }
 
-    private (Dictionary<(int, int), int> newGrid, int flashes) Round(Dictionary<(int, int), int> startGrid)
+    private (Dictionary<(int, int), int> endGrid, int flashes) Round(Dictionary<(int, int), int> startGrid)
     {
         var endGrid = startGrid.ToDictionary(i => i.Key, i => i.Value + 1);
 
         var flashedSquid = new HashSet<(int X, int Y)>();
-        var flashingSquid = new Queue<(int X, int Y)>(endGrid.Where(p => p.Value > 9).Select(p => p.Key));
+        var flashingSquid = new Queue<(int X, int Y)>(endGrid.Where(i => i.Value > 9).Select(i => i.Key));
 
         while (flashingSquid.Count > 0)
         {
@@ -40,17 +39,12 @@ public class Day11: IDay<int>
 
             var surroundingSquidLocations = _offsets
                 .Select(l => (X: l.X + currentSquid.X, Y: l.Y + currentSquid.Y))
-                .Where(l => endGrid.ContainsKey(l) && !flashedSquid.Contains(l))
+                .Where(l => endGrid.ContainsKey(l) && !flashedSquid.Contains(l) && !flashingSquid.Contains(l))
                 .ToList();
 
-            foreach (var ssl in surroundingSquidLocations)
+            foreach (var ssl in surroundingSquidLocations.Where(ssl => ++endGrid[ssl] > 9))
             {
-                endGrid[ssl]++;
-
-                if (endGrid[ssl] > 9 && !flashedSquid.Contains(ssl) && !flashingSquid.Contains(ssl))
-                {
-                    flashingSquid.Enqueue(ssl);
-                }
+                flashingSquid.Enqueue(ssl);
             }
         }
 
