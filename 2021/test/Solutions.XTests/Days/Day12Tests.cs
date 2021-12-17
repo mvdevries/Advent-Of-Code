@@ -18,7 +18,18 @@ public class UnitTest12: IAsyncLifetime
         _testOutputHelper = testOutputHelper;
     }
 
-    private const string _handInput = @"";
+    private const string _handInput = @"
+dc-end
+HN-start
+start-kj
+dc-start
+dc-HN
+LN-dc
+HN-end
+kj-sa
+kj-HN
+kj-dc
+";
 
     public async Task InitializeAsync()
     {
@@ -42,7 +53,7 @@ public class UnitTest12: IAsyncLifetime
     {
         var answer = _day12.Part1(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(4970, answer);
     }
 
     [Fact]
@@ -57,6 +68,6 @@ public class UnitTest12: IAsyncLifetime
     {
         var answer = _day12.Part2(_input!);
         _testOutputHelper.WriteLine(answer.ToString());
-        Assert.Equal(0, answer);
+        Assert.Equal(137948, answer);
     }
 }
