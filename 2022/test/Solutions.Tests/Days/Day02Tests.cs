@@ -6,30 +6,19 @@ using Xunit;
 
 namespace Solutions.XTests.Days;
 
-public class UnitTest01: IAsyncLifetime
+public class UnitTest02: IAsyncLifetime
 {
-    private readonly Day01 _day = new();
+    private readonly Day02 _day = new();
     private string? _input;
 
-    private const string handInput = @"1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000
+    private const string handInput = @"A Y
+B X
+C Z
 ";
 
     public async Task InitializeAsync()
     {
-        _input = await File.ReadAllTextAsync("./Inputs/Day01.txt");
+        _input = await File.ReadAllTextAsync("./Inputs/Day02.txt");
     }
 
     public Task DisposeAsync()
@@ -49,7 +38,7 @@ public class UnitTest01: IAsyncLifetime
     {
         var answer = _day.Part1(_input!);
         Debug.WriteLine(answer);
-        Assert.Equal(70720, answer);
+        Assert.Equal(0, answer);
     }
 
     [Fact]
@@ -64,6 +53,6 @@ public class UnitTest01: IAsyncLifetime
     {
         var answer = _day.Part2(_input!);
         Debug.WriteLine(answer);
-        Assert.Equal(207148, answer);
+        Assert.Equal(0, answer);
     }
 }
