@@ -11,7 +11,8 @@ public class UnitTest01: IAsyncLifetime
     private readonly Day01 _day = new();
     private string? _input;
 
-    private const string handInput = @"1000
+    private const string HandInput =
+@"1000
 2000
 3000
 
@@ -40,7 +41,7 @@ public class UnitTest01: IAsyncLifetime
     [Fact]
     public void HandTestPart1()
     {
-        var answer = _day.Part1(handInput);
+        var answer = _day.Part1(HandInput);
         Debug.WriteLine(answer);
     }
 
@@ -55,7 +56,7 @@ public class UnitTest01: IAsyncLifetime
     [Fact]
     public void HandTestPart2()
     {
-        var answer = _day.Part2(handInput);
+        var answer = _day.Part2(HandInput);
         Debug.WriteLine(answer);
     }
 

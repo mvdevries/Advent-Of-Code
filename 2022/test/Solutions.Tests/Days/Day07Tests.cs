@@ -7,22 +7,16 @@ using Xunit;
 
 namespace Solutions.XTests.Days;
 
-public class UnitTest04: IAsyncLifetime
+public class UnitTest07: IAsyncLifetime
 {
-    private readonly Day04 _day = new();
+    private readonly Day07 _day = new();
     private string? _input;
 
-    private const string HandInput =
-@"2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8";
+    private const string handInput = "";
 
     public async Task InitializeAsync()
     {
-        _input = await File.ReadAllTextAsync("./Inputs/Day04.txt");
+        _input = await File.ReadAllTextAsync("./Inputs/Day07.txt");
     }
 
     public Task DisposeAsync()
@@ -33,28 +27,28 @@ public class UnitTest04: IAsyncLifetime
     [Fact]
     public void HandTestPart1()
     {
-        var answer = _day.Part1(HandInput);
-        Assert.Equal(2, answer);
+        var answer = _day.Part1(handInput);
+        Assert.Equal(0, answer);
     }
 
     [Fact]
     public void Part1()
     {
         var answer = _day.Part1(_input!);
-        Assert.Equal(605, answer);
+        Assert.Equal(0, answer);
     }
 
     [Fact]
     public void HandTestPart2()
     {
-        var answer = _day.Part2(HandInput);
-        Assert.Equal(4, answer);
+        var answer = _day.Part2(handInput);
+        Assert.Equal(0, answer);
     }
 
     [Fact]
     public void Part2()
     {
         var answer = _day.Part2(_input!);
-        Assert.Equal(914, answer);
+        Assert.Equal(0, answer);
     }
 }

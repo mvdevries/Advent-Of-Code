@@ -12,7 +12,7 @@ public class UnitTest03: IAsyncLifetime
     private readonly Day03 _day = new();
     private string? _input;
 
-    private const string handInput =
+    private const string HandInput =
 @"vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
 PmmdzqPrVvPwwTWBwg
@@ -34,8 +34,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw
     [Fact]
     public void HandTestPart1()
     {
-        var answer = _day.Part1(handInput);
-        Console.WriteLine(answer);
+        var answer = _day.Part1(HandInput);
         Assert.Equal(157, answer);
     }
 
@@ -43,15 +42,13 @@ CrZsJsPPZsGzwwsLwLmpwMDw
     public void Part1()
     {
         var answer = _day.Part1(_input!);
-        Console.WriteLine(answer);
         Assert.Equal(8139, answer);
     }
 
     [Fact]
     public void HandTestPart2()
     {
-        var answer = _day.Part2(handInput);
-        Console.WriteLine(answer);
+        var answer = _day.Part2(HandInput);
         Assert.Equal(70, answer);
     }
 
@@ -59,7 +56,6 @@ CrZsJsPPZsGzwwsLwLmpwMDw
     public void Part2()
     {
         var answer = _day.Part2(_input!);
-        Console.WriteLine(answer);
         Assert.Equal(2668, answer);
     }
 }
