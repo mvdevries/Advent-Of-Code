@@ -12,7 +12,7 @@ public class UnitTest07: IAsyncLifetime
     private readonly Day07 _day = new();
     private string? _input;
 
-    private const string handInput = "";
+    private const string HandInput = "";
 
     public async Task InitializeAsync()
     {
@@ -27,7 +27,7 @@ public class UnitTest07: IAsyncLifetime
     [Fact]
     public void HandTestPart1()
     {
-        var answer = _day.Part1(handInput);
+        var answer = _day.Part1(HandInput);
         Assert.Equal(0, answer);
     }
 
@@ -41,7 +41,7 @@ public class UnitTest07: IAsyncLifetime
     [Fact]
     public void HandTestPart2()
     {
-        var answer = _day.Part2(handInput);
+        var answer = _day.Part2(HandInput);
         Assert.Equal(0, answer);
     }
 
