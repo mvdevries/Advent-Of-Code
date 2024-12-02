@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Solutions.Extensions;
 
 public static class StringExtensions
@@ -20,5 +22,12 @@ public static class StringExtensions
             .ToArray();
 
         return (parts[0], parts[1]);
+    }
+    
+    public static IEnumerable<string> SplitOnSpace(this string input, bool removeEmpty = true)
+    {
+        return removeEmpty
+            ? input.Split(' ').Where(line => !string.IsNullOrWhiteSpace(line))
+            : input.Split(' ');
     }
 }
