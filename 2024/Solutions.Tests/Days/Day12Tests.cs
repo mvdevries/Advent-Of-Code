@@ -3,18 +3,16 @@ using Solutions.Days;
 
 namespace Solutions.Tests.Days;
 
-public class Day03Tests : IAsyncLifetime
+public class Day12Tests : IAsyncLifetime
 {
-    private readonly Day03 _day = new();
+    private readonly Day12 _day = new();
     private string _input = default!;
     private string _exampleInput = default!;
-    private string _exampleInput2 = default!;
     
     public async Task InitializeAsync()
     {
-        _input = await File.ReadAllTextAsync("./Inputs/Day03.txt");
-        _exampleInput = await File.ReadAllTextAsync("./Inputs/Day03Example.txt");
-        _exampleInput2 = await File.ReadAllTextAsync("./Inputs/Day03Example2.txt");
+        _input = await File.ReadAllTextAsync("./Inputs/Day12.txt");
+        _exampleInput = await File.ReadAllTextAsync("./Inputs/Day12Example.txt");
     }
 
     public Task DisposeAsync()
@@ -27,7 +25,7 @@ public class Day03Tests : IAsyncLifetime
     {
         var answer = _day.Part1(_exampleInput);
         Debug.WriteLine(answer);
-        Assert.Equal(161, answer);
+        Assert.Equal(0, answer);
     }
     
     [Fact]
@@ -35,15 +33,15 @@ public class Day03Tests : IAsyncLifetime
     {
         var answer = _day.Part1(_input);
         Debug.WriteLine(answer);
-        Assert.Equal(162813399, answer);
+        Assert.Equal(0, answer);
     }
 
     [Fact]
     public void Part2Example()
     {
-        var answer = _day.Part2(_exampleInput2);
+        var answer = _day.Part2(_exampleInput);
         Debug.WriteLine(answer);
-        Assert.Equal(8, answer);
+        Assert.Equal(0, answer);
     }
     
     [Fact]
@@ -51,6 +49,6 @@ public class Day03Tests : IAsyncLifetime
     {
         var answer = _day.Part2(_input);
         Debug.WriteLine(answer);
-        Assert.Equal(53783319, answer);
+        Assert.Equal(0, answer);
     }
 }

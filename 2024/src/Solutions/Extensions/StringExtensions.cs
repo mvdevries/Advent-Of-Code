@@ -1,9 +1,15 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Solutions.Extensions;
 
-public static class StringExtensions
+public static partial class StringExtensions
 {
+    public static string RemoveWhitespace(this string input)
+    {
+        return string.IsNullOrEmpty(input) ? input : WhitespaceRegex().Replace(input, string.Empty);
+    }
+    
     public static IEnumerable<string> SplitOnLines(this string input, string seperator = "\n",
         bool removeEmpty = true, StringSplitOptions options = StringSplitOptions.None)
     {
@@ -30,4 +36,7 @@ public static class StringExtensions
             ? input.Split(' ').Where(line => !string.IsNullOrWhiteSpace(line))
             : input.Split(' ');
     }
+
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex WhitespaceRegex();
 }
