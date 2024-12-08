@@ -45,11 +45,11 @@ public class Day06 : IDay<int>
         return (-1, -1);
     }
 
-    private List<(int x, int y)> GetPath(char[][] grid, (int x, int y) startPosition, int direction)
+    private List<(int x, int y, int direction)> GetPath(char[][] grid, (int x, int y) startPosition, int direction)
     {
         var x = startPosition.x;
         var y = startPosition.y;
-        var path = new List<(int x, int y)>();
+        var path = new List<(int x, int y, int direction)>();
 
         while (true)
         {
@@ -60,20 +60,18 @@ public class Day06 : IDay<int>
             {
                 break;
             }
-
-            var nextChar = grid[nextY][nextX];
-            if (GridIsEqual(grid, nextX, nextY, '.') || GridIsEqual(grid, nextX, nextY, '^'))
-            {
-                x = nextX;
-                y = nextY;
-                path.Add((x, y));
-                continue;
-            }
-
+            
             if (GridIsEqual(grid, nextX, nextY, '#'))
             {
                 direction = (direction + 1) % 4;
             }
+            else
+            {
+                x = nextX;
+                y = nextY;
+            }
+            
+            path.Add((x, y, direction));
         }
 
         return path;
@@ -82,16 +80,19 @@ public class Day06 : IDay<int>
     public int Part1(string input)
     {
         var grid = ParseInput(input);
-        var guardDirection = 0;
         var guardStartPosition = FindPosition(grid, '^');
-
-        return GetPath(grid, guardStartPosition, guardDirection).ToHashSet().Count;
+        return GetPath(grid, guardStartPosition, direction: 0)
+            .Select(p => (p.x, p.y))
+            .ToHashSet()
+            .Count;
     }
 
     public int Part2(string input)
     {
         var grid = ParseInput(input);
-
+        var guardStartPosition = FindPosition(grid, '^');
+        var originalPath = GetPath(grid, guardStartPosition, direction: 0);
+        var seen = new Stack<(int x, int y, int d)>(originalPath);
         return 0;
     }
 }

@@ -5,7 +5,7 @@ namespace Solutions.Tests.Days;
 
 public class Day06Tests : IAsyncLifetime
 {
-    private readonly Day06 _day = new();
+    private readonly Day062 _day = new();
     private string _input = default!;
     private string _exampleInput = default!;
     
@@ -41,7 +41,7 @@ public class Day06Tests : IAsyncLifetime
     {
         var answer = _day.Part2(_exampleInput);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(6, answer);
     }
     
     [Fact]
@@ -49,6 +49,6 @@ public class Day06Tests : IAsyncLifetime
     {
         var answer = _day.Part2(_input);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(1957, answer);
     }
 }

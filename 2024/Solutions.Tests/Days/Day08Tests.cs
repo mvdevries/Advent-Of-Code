@@ -25,7 +25,7 @@ public class Day08Tests : IAsyncLifetime
     {
         var answer = _day.Part1(_exampleInput);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(14, answer);
     }
     
     [Fact]
@@ -33,7 +33,7 @@ public class Day08Tests : IAsyncLifetime
     {
         var answer = _day.Part1(_input);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(413, answer);
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public class Day08Tests : IAsyncLifetime
     {
         var answer = _day.Part2(_exampleInput);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(34, answer);
     }
     
     [Fact]
@@ -49,6 +49,6 @@ public class Day08Tests : IAsyncLifetime
     {
         var answer = _day.Part2(_input);
         Debug.WriteLine(answer);
-        Assert.Equal(0, answer);
+        Assert.Equal(1417, answer);
     }
 }
